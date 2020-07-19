@@ -1,14 +1,15 @@
 #calcbox {
 
-    display: flex;
+    display: block;
     position: absolute;
     left: 400px;
     top: 150px;
     height: 20px;
-    width: 22.6%;
+    width: 18.2%;
     z-index: 10;
     border: 3px solid green;
     height: 20px;
+    text-align: right;
 
 }
 
