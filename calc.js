@@ -19,9 +19,21 @@ const multiply = (total, num) => {
 };
 
 const divide = (total, num) => {
+    
+    if (num === 0) {
+        clearValues();
+        console.log(numberList);
+        console.log(initialValue);
+        console.log(secondValue);
+        console.log(myOperator);
+        return "No No No!!!"
+    }
+
+    else {
     let quotient = total / num;
     return round(quotient, 2);
     //return total / num;
+    }
 };
 
 //Used for rounding numbers
@@ -83,11 +95,23 @@ btn2.forEach(element => {
 btn3.addEventListener("click", () => {
 
     //Determine which value to store
-    if (secondValue === "") {
+    if (secondValue === "" && myOperator !== "") {
         
         numberList.push(Number(initialValue));
         console.log(numberList);
     } 
+    
+    else if (initialValue === "" || secondValue === "" && myOperator === "") {
+
+        clearValues();
+        console.log(numberList);
+        console.log(initialValue);
+        console.log(secondValue);
+        console.log(myOperator);
+        document.getElementById("calcbox").innerText = "NaN";
+
+    }
+    
     
     else {
 
@@ -95,6 +119,7 @@ btn3.addEventListener("click", () => {
         console.log(numberList); 
 
     }
+
     console.log(myOperator);
     switch (myOperator) {
 
@@ -129,10 +154,7 @@ btn3.addEventListener("click", () => {
 btn4.addEventListener("click", () => {
 
     //clear all fields used for calculation
-    numberList = [];
-    initialValue = "";
-    secondValue = "";
-    myOperator = "";
+    clearValues();
     console.log(numberList);
     console.log(initialValue);
     console.log(secondValue);
@@ -141,6 +163,16 @@ btn4.addEventListener("click", () => {
     document.getElementById("calcbox").innerText = 0;
 
 })
+
+//used for starting fresh
+function clearValues () {
+
+    numberList = [];
+    initialValue = "";
+    secondValue = "";
+    myOperator = "";
+
+}
 
 
 
