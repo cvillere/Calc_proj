@@ -1,24 +1,34 @@
 //All of these functions are going to need to be combined into one.
 
 const add = (total, num) => {
-    return total + num;
+    let sum = total + num
+    return round(sum, 2);
+    //return total + num;
 };
 
 const subtract = (total, num) => {
-    return total - num;
+    let difference = total - num
+    return round(difference, 2);
+    //return total - num;
 };
 
 const multiply = (total, num) => {
-    return total * num;
+    let multiples = total * num;
+    return round(multiples, 2);
+    //return total * num;
 };
 
 const divide = (total, num) => {
-    return total / num;
+    let quotient = total / num;
+    return round(quotient, 2);
+    //return total / num;
 };
 
-const operate = (operator, myNum, hisNum) => {
-    return operator(myNum, hisNum);
-};
+//Used for rounding numbers
+function round(value, decimals) {
+    return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+  }
+
 
 const btn1 = document.querySelectorAll(".format1");
 const btn2 = document.querySelectorAll(".format2");
@@ -36,13 +46,14 @@ btn1.forEach(element => {
 
             const buttonValue = element.textContent
             document.getElementById("calcbox").innerText = secondNum(buttonValue);
-
+            console.log(buttonValue);
         } 
         
         else  {
             
             const buttonValue = element.textContent;
             document.getElementById("calcbox").innerText = firstNum(buttonValue);
+            console.log(buttonValue);
             
             }
         
@@ -63,6 +74,7 @@ btn2.forEach(element => {
         numberList.push(Number(initialValue));
         //console.log(numberList);
         console.log(initialValue);
+
 
         });
         
@@ -87,20 +99,23 @@ btn3.addEventListener("click", () => {
     switch (myOperator) {
 
         case "ADD":
-            document.getElementById("calcbox").innerText = numberList.reduce(add, 0);
-            console.log(numberList.reduce(add, 0));
+            document.getElementById("calcbox").innerText = numberList.reduce(add);
+            console.log(numberList.reduce(add));
             break;
 
         case "SUB":
-            document.getElementById("calcbox").innerText = numberList.reduce(subtract, 0);
+            document.getElementById("calcbox").innerText = numberList.reduce(subtract);
+            console.log(numberList.reduce(subtract));
             break;
         
         case "MUL":
-            document.getElementById("calcbox").innerText = numberList.reduce(multiply, 0);
+            document.getElementById("calcbox").innerText = numberList.reduce(multiply);
+            console.log(numberList.reduce(multiply));
             break;
 
         case "DIV":
-            document.getElementById("calcbox").innerText = numberList.reduce(divide, 0);
+            document.getElementById("calcbox").innerText = numberList.reduce(divide);
+            console.log(numberList.reduce(divide));
             break;
 
     } 
@@ -111,7 +126,21 @@ btn3.addEventListener("click", () => {
 
 });
 
+btn4.addEventListener("click", () => {
 
+    //clear all fields used for calculation
+    numberList = [];
+    initialValue = "";
+    secondValue = "";
+    myOperator = "";
+    console.log(numberList);
+    console.log(initialValue);
+    console.log(secondValue);
+    console.log(myOperator);
+
+    document.getElementById("calcbox").innerText = 0;
+
+})
 
 
 
