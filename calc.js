@@ -1,27 +1,40 @@
-//All of these functions are going to need to be combined into one.
+//Global Variables
+
+let numberList = [];
+let myOperator = "";
+let initialValue = ""; 
+let secondValue = "";
+
+
+//---07/19/2020 9:38 PM -- when you assign initialValue here, you will probably need
+// to clear out the numberedList array for each function
 
 const add = (total, num) => {
-    let sum = total + num
-    return round(sum, 2);
+    let sum = total + num;
+    initialValue = round(sum, 2);
+    return initialValue;
     //return total + num;
 };
 
 const subtract = (total, num) => {
     let difference = total - num
-    return round(difference, 2);
+    initialValue = round(difference, 2);
+    return initialValue;
     //return total - num;
 };
 
 const multiply = (total, num) => {
     let multiples = total * num;
-    return round(multiples, 2);
+    initialValue = round(multiples, 2);
+    return initialValue;
     //return total * num;
 };
 
 const divide = (total, num) => {
     
     if (num === 0) {
-        clearValues();
+
+        //clearValues();
         console.log(numberList);
         console.log(initialValue);
         console.log(secondValue);
@@ -30,25 +43,68 @@ const divide = (total, num) => {
     }
 
     else {
-    let quotient = total / num;
-    return round(quotient, 2);
-    //return total / num;
+
+        let quotient = total / num;
+        initialValue = round(quotient, 2);
+        return initialValue;
+        //return total / num;
+
     }
+
 };
 
 //Used for rounding numbers
 function round(value, decimals) {
+
     return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
-  }
+
+    };
+
+//used to establish continuing value and add it to numbered List
+function continuing (contArray, contValue) {
+
+    contArray = [];
+    contArray.push(contValue);
+    return contArray;
+
+    };
 
 
 const btn1 = document.querySelectorAll(".format1");
 const btn2 = document.querySelectorAll(".format2");
-const btn3 = document.querySelector(".format3")
+const equalSign = document.querySelector(".format3")
 const btn4 = document.querySelector(".format4")
+const btn5 = document.querySelector(".format5")
+const btn6 = document.querySelector(".format6")
 
-let numberList = [];
-let myOperator = "";
+
+
+btn1.forEach(element => {  
+    
+    element.addEventListener("click", () => {
+
+        if (myOperator.length > 0) {
+
+            const buttonValue = element.textContent
+            document.getElementById("calcbox").innerText = secondNum(buttonValue);
+            console.log(buttonValue);
+        } 
+        
+        else  {
+            
+            const buttonValue = element.textContent;
+            document.getElementById("calcbox").innerText = firstNum(buttonValue);
+            console.log(buttonValue);
+            
+            }
+        
+        });
+    
+    });
+
+
+
+
 
 btn1.forEach(element => {  
     
@@ -83,31 +139,43 @@ btn2.forEach(element => {
         console.log(myOperator);
         
         //store the firstNumber 
-        numberList.push(Number(initialValue));
-        //console.log(numberList);
-        console.log(initialValue);
+        if (numberList.length === 0) {
+            
+            numberList.push(Number(initialValue));
+            //console.log(numberList);
+            console.log(initialValue);
+            console.log(numberList);
 
+        }
 
-        });
-        
     });
-
-btn3.addEventListener("click", () => {
-
-    //Determine which value to store
-    if (secondValue === "" && myOperator !== "") {
         
+});
+
+equalSign.addEventListener("click", () => {
+
+    console.log(numberList);
+    console.log(initialValue);
+    console.log(secondValue);
+    console.log(myOperator);
+
+    //Determine which value to store initially
+    if (secondValue === "" && myOperator !== "") {
+
+
         numberList.push(Number(initialValue));
         console.log(numberList);
+
     } 
     
-    else if (initialValue === "" || secondValue === "" && myOperator === "") {
+    //condition was initially set to deal with erratic equal sign behavior
+    else if ((initialValue === "" || secondValue === "") && myOperator === "") {
 
-        clearValues();
-        console.log(numberList);
-        console.log(initialValue);
-        console.log(secondValue);
-        console.log(myOperator);
+        //clearValues();
+        //console.log(numberList);
+        //console.log(initialValue);
+        //console.log(secondValue);
+        //console.log(myOperator);
         document.getElementById("calcbox").innerText = "NaN";
 
     }
@@ -115,39 +183,41 @@ btn3.addEventListener("click", () => {
     
     else {
 
+        
         numberList.push(Number(secondValue));
         console.log(numberList); 
+        console.log(secondValue);
+        console.log(initialValue);
 
     }
 
     console.log(myOperator);
+
     switch (myOperator) {
 
         case "ADD":
             document.getElementById("calcbox").innerText = numberList.reduce(add);
-            console.log(numberList.reduce(add));
             break;
 
         case "SUB":
             document.getElementById("calcbox").innerText = numberList.reduce(subtract);
-            console.log(numberList.reduce(subtract));
             break;
         
         case "MUL":
             document.getElementById("calcbox").innerText = numberList.reduce(multiply);
-            console.log(numberList.reduce(multiply));
             break;
 
         case "DIV":
             document.getElementById("calcbox").innerText = numberList.reduce(divide);
-            console.log(numberList.reduce(divide));
             break;
 
     } 
 
-    initialValue = "";
     secondValue = "";
-
+    initialValue = continuing(numberList, initialValue);
+    numberList = initialValue;
+    console.log(initialValue);
+    console.log(numberList);  
 
 });
 
@@ -155,14 +225,75 @@ btn4.addEventListener("click", () => {
 
     //clear all fields used for calculation
     clearValues();
-    console.log(numberList);
-    console.log(initialValue);
-    console.log(secondValue);
-    console.log(myOperator);
+    //console.log(numberList);
+    //console.log(initialValue);
+    //console.log(secondValue);
+    //console.log(myOperator);
 
     document.getElementById("calcbox").innerText = 0;
 
 })
+
+btn5.addEventListener("click", () => {
+
+    if (initialValue.includes(".") && secondValue === "") {
+        document.getElementById("calcbox").innerText = initialValue;
+        console.log(document.getElementById("calcbox").innerText);
+    }
+    
+    else if (secondValue.includes(".")) {
+        document.getElementById("calcbox").innerText = secondValue;
+        console.log(document.getElementById("calcbox").innerText);
+    }
+
+    else if (secondValue === "") {
+        initialValue = `${initialValue}.`
+        document.getElementById("calcbox").innerText = initialValue;
+        console.log(initialValue);
+        console.log(document.getElementById("calcbox").innerText)
+    }
+
+    else if (initialValue !== "") {
+        secondValue = `${secondValue}.`
+        document.getElementById("calcbox").innerText = secondValue;
+        console.log(secondValue);
+    }
+
+})
+
+btn6.addEventListener("click", () => {
+
+    if (secondValue === "" && initialValue.length > 0) {
+
+        initialValue = backSpace(initialValue);
+        document.getElementById("calcbox").innerText = initialValue;
+        
+
+    }
+
+    else if (initialValue !== "" && secondValue.length > 0) {
+        
+        secondValue = backSpace(secondValue);
+        document.getElementById("calcbox").innerText = secondValue;
+
+    }
+
+    else if (initialValue === "" && secondValue === "")
+
+        document.getElementById("calcbox").innerText = 0;
+        console.log(document.getElementById("calcbox").innerText);
+        
+
+})
+
+//backspacing numbers
+
+let backSpace = (stringValue) => {
+
+    stringValue = stringValue.slice(0, -1);
+    return stringValue;
+
+}
 
 //used for starting fresh
 function clearValues () {
@@ -196,8 +327,7 @@ function clearValues () {
         //all it should do.
 
 
-let initialValue = ""; 
-let secondValue = "";
+
 
 let firstNum = (buttonNumber) => {
     

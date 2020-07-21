@@ -17,7 +17,7 @@
 
     display: flex;
     position: absolute;
-    height: 250px;
+    height: 275px;
     width: 315px;
     border-top: 10px solid red;
     border-left: 10px solid red;
@@ -76,6 +76,16 @@
   
 }
 
+.movement5 {
+
+    display: flex;
+    position: absolute;
+    top: 340px;
+    left: 400px;
+
+  
+}
+
 
 
 .format {
@@ -84,6 +94,22 @@
     width: 51px;
     margin: 5px 5px 5px 0px;
     z-index: 5;
+
+}
+
+.format2 {
+
+    background-color: green;
+    color: magenta;
+
+}
+
+.design {
+
+    height: 25px;
+    width: 107px;
+    margin: 5px 5px 5px 0px;
+    z-index: 6;
 
 }
 
