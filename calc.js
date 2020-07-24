@@ -34,7 +34,7 @@ const divide = (total, num) => {
     
     if (num === 0) {
 
-        //clearValues();
+        clearValues();
         console.log(numberList);
         console.log(initialValue);
         console.log(secondValue);
@@ -70,6 +70,22 @@ function continuing (contArray, contValue) {
     };
 
 
+let firstNum = (buttonNumber) => {
+    
+    initialValue += buttonNumber;
+    return initialValue;
+
+    };
+
+let secondNum = (buttonNumber) => {
+
+    secondValue += buttonNumber;
+    return secondValue;
+
+    };
+
+
+const keySupport = document.getElementById("calcbox");
 const btn1 = document.querySelectorAll(".format1");
 const btn2 = document.querySelectorAll(".format2");
 const equalSign = document.querySelector(".format3")
@@ -77,8 +93,96 @@ const btn4 = document.querySelector(".format4")
 const btn5 = document.querySelector(".format5")
 const btn6 = document.querySelector(".format6")
 
+/*
+for keyboard support it will need to be attached to the calcbox
+DIV. There will need to be slight adjustments though on assignments
+because you'll be grabbing the keyboard value for the numerical
+values, backspace, decimal, and clear
+
+I think the code should be the same for all the operators and 
+equal sign
+*/
+/*
+let keySupport = (event) => {
+
+    let keyValue = event.key;
+    document.getElementById("calcbox").innerHTML = keyValue;
+
+}
+*/
 
 
+let addNumbers = (item) => {
+
+    if (myOperator.length > 0) {
+
+        const buttonValue = item.textContent
+        document.getElementById("calcbox").innerText = secondNum(buttonValue);
+        console.log(buttonValue);
+    }
+
+    else  {
+            
+        const buttonValue = item.textContent;
+        document.getElementById("calcbox").innerText = firstNum(buttonValue);
+        console.log(buttonValue);
+        
+        }
+
+    };
+
+
+let keyNumbers = (event) => {
+
+    if (myOperator.length > 0) {
+
+        const buttonValue = event.key
+        document.getElementById("calcbox").innerText = secondNum(buttonValue);
+        console.log(buttonValue);
+    }
+
+    else  {
+            
+        const buttonValue = event.key;
+        document.getElementById("calcbox").innerText = firstNum(buttonValue);
+        console.log(buttonValue);
+        
+        }
+
+    };
+
+
+keySupport.addEventListener("keydown", (event) => {
+
+    if (myOperator.length > 0) {
+
+        const buttonValue = event.key
+        document.getElementById("calcbox").innerHTML = secondNum(buttonValue);
+        console.log(buttonValue);
+    }
+
+    else  {
+            
+        const buttonValue = event.key;
+        document.getElementById("calcbox").innerHTML = firstNum(buttonValue);
+        console.log(buttonValue);
+        
+        }
+
+
+    });
+
+
+
+btn1.forEach(element => {  
+    
+    element.addEventListener("click", () => {addNumbers(element)});
+
+    });
+
+   
+
+/*
 btn1.forEach(element => {  
     
     element.addEventListener("click", () => {
@@ -101,33 +205,8 @@ btn1.forEach(element => {
         });
     
     });
+*/
 
-
-
-
-
-btn1.forEach(element => {  
-    
-    element.addEventListener("click", () => {
-
-        if (myOperator.length > 0) {
-
-            const buttonValue = element.textContent
-            document.getElementById("calcbox").innerText = secondNum(buttonValue);
-            console.log(buttonValue);
-        } 
-        
-        else  {
-            
-            const buttonValue = element.textContent;
-            document.getElementById("calcbox").innerText = firstNum(buttonValue);
-            console.log(buttonValue);
-            
-            }
-        
-        });
-    
-    });
 
 btn2.forEach(element => {  
     
@@ -142,7 +221,7 @@ btn2.forEach(element => {
         if (numberList.length === 0) {
             
             numberList.push(Number(initialValue));
-            //console.log(numberList);
+            console.log(numberList);
             console.log(initialValue);
             console.log(numberList);
 
@@ -171,11 +250,11 @@ equalSign.addEventListener("click", () => {
     //condition was initially set to deal with erratic equal sign behavior
     else if ((initialValue === "" || secondValue === "") && myOperator === "") {
 
-        //clearValues();
+        clearValues();
         //console.log(numberList);
-        //console.log(initialValue);
-        //console.log(secondValue);
-        //console.log(myOperator);
+        console.log(initialValue);
+        console.log(secondValue);
+        console.log(myOperator);
         document.getElementById("calcbox").innerText = "NaN";
 
     }
@@ -280,8 +359,9 @@ btn6.addEventListener("click", () => {
 
     else if (initialValue === "" && secondValue === "")
 
-        document.getElementById("calcbox").innerText = 0;
-        console.log(document.getElementById("calcbox").innerText);
+        //console.log(backSpace(initialValue));
+        document.getElementById("calcbox").innerText = backSpace(initialValue);
+        //console.log(document.getElementById("calcbox").innerText);
         
 
 })
@@ -290,10 +370,24 @@ btn6.addEventListener("click", () => {
 
 let backSpace = (stringValue) => {
 
+/*
+    if (stringValue.isArray === true) {
+
+        popValue = stringValue.pop();
+        sliceValue = popValue.slice(0,-1);
+        backSpaceArray = stringValue.push(sliceValue);
+        return backSpaceArray;
+
+    } 
+*/
+
+{
     stringValue = stringValue.slice(0, -1);
     return stringValue;
 
-}
+    }
+
+};
 
 //used for starting fresh
 function clearValues () {
@@ -306,42 +400,30 @@ function clearValues () {
 }
 
 
+/*
 
-
-        //second number gets submitted -- store it
-        //on equal sign, run a function with all the stored values. 
-            //And get rid of all the values in the initialValue List
+        second number gets submitted -- store it
+        on equal sign, run a function with all the stored values. 
+            And get rid of all the values in the initialValue List
                 
-        //save the first number --- don't think I need to worry about this too much. -- Just use the firstNumber function
-        //figure out the operator 
+        save the first number --- don't think I need to worry about this too much. -- Just use the firstNumber function
+        figure out the operator 
 
-        //Outstanding question: when you click an operator button, the number on the screen 
-        //stays there until another number is clicked. How does that happen?
-                //--Fixed this with using additional variable
+        Outstanding question: when you click an operator button, the number on the screen 
+        stays there until another number is clicked. How does that happen?
+                --Fixed this with using additional variable
 
-        //equal function is going to involve if statement and reduce array method
-        //result of that reduce array is what the dom element will be equal to.
-            //initialValue and secondValue will go back to empty strings
+        equal function is going to involve if statement and reduce array method
+        result of that reduce array is what the dom element will be equal to.
+            initialValue and secondValue will go back to empty strings
 
-        //Clear function is going to have to clear out the number list. -- I'm pretty sure that is
-        //all it should do.
+        Clear function is going to have to clear out the number list. -- I'm pretty sure that is
+        all it should do.
+
+*/
 
 
 
-
-let firstNum = (buttonNumber) => {
-    
-    initialValue += buttonNumber;
-    return initialValue;
-
-    };
-
-let secondNum = (buttonNumber) => {
-
-    secondValue += buttonNumber;
-    return secondValue;
-
-    };
 
 
 
