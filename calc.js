@@ -86,15 +86,6 @@ const btn4 = document.querySelector(".format4")
 const btn5 = document.querySelector(".format5")
 const btn6 = document.querySelector(".format6")
 
-/*
-for keyboard support it will need to be attached to the calcbox
-DIV. There will need to be slight adjustments though on assignments
-because you'll be grabbing the keyboard value for the numerical
-values, backspace, decimal, and clear
-
-I think the code should be the same for all the operators and 
-equal sign
-*/
 
 
 let addNumbers = (item) => {
@@ -290,27 +281,16 @@ btn6.addEventListener("click", () => {
 
     else if (initialValue === "" && secondValue === "")
 
-        //console.log(backSpace(initialValue));
         document.getElementById("calcbox").innerText = backSpace(initialValue);
-        //console.log(document.getElementById("calcbox").innerText);
         
-
+        
 })
 
 //backspacing numbers
 
 let backSpace = (stringValue) => {
 
-/*
-    if (stringValue.isArray === true) {
 
-        popValue = stringValue.pop();
-        sliceValue = popValue.slice(0,-1);
-        backSpaceArray = stringValue.push(sliceValue);
-        return backSpaceArray;
-
-    } 
-*/
 
 {
     stringValue = stringValue.slice(0, -1);
@@ -331,27 +311,7 @@ function clearValues () {
 }
 
 
-/*
 
-        second number gets submitted -- store it
-        on equal sign, run a function with all the stored values. 
-            And get rid of all the values in the initialValue List
-                
-        save the first number --- don't think I need to worry about this too much. -- Just use the firstNumber function
-        figure out the operator 
-
-        Outstanding question: when you click an operator button, the number on the screen 
-        stays there until another number is clicked. How does that happen?
-                --Fixed this with using additional variable
-
-        equal function is going to involve if statement and reduce array method
-        result of that reduce array is what the dom element will be equal to.
-            initialValue and secondValue will go back to empty strings
-
-        Clear function is going to have to clear out the number list. -- I'm pretty sure that is
-        all it should do.
-
-*/
 
 
 
