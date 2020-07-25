@@ -6,28 +6,25 @@ let initialValue = "";
 let secondValue = "";
 
 
-//---07/19/2020 9:38 PM -- when you assign initialValue here, you will probably need
-// to clear out the numberedList array for each function
-
 const add = (total, num) => {
     let sum = total + num;
     initialValue = round(sum, 2);
     return initialValue;
-    //return total + num;
+
 };
 
 const subtract = (total, num) => {
     let difference = total - num
     initialValue = round(difference, 2);
     return initialValue;
-    //return total - num;
+
 };
 
 const multiply = (total, num) => {
     let multiples = total * num;
     initialValue = round(multiples, 2);
     return initialValue;
-    //return total * num;
+
 };
 
 const divide = (total, num) => {
@@ -35,11 +32,8 @@ const divide = (total, num) => {
     if (num === 0) {
 
         clearValues();
-        console.log(numberList);
-        console.log(initialValue);
-        console.log(secondValue);
-        console.log(myOperator);
         return "No No No!!!"
+
     }
 
     else {
@@ -47,7 +41,6 @@ const divide = (total, num) => {
         let quotient = total / num;
         initialValue = round(quotient, 2);
         return initialValue;
-        //return total / num;
 
     }
 
@@ -85,7 +78,7 @@ let secondNum = (buttonNumber) => {
     };
 
 
-const keySupport = document.getElementById("calcbox");
+
 const btn1 = document.querySelectorAll(".format1");
 const btn2 = document.querySelectorAll(".format2");
 const equalSign = document.querySelector(".format3")
@@ -102,14 +95,6 @@ values, backspace, decimal, and clear
 I think the code should be the same for all the operators and 
 equal sign
 */
-/*
-let keySupport = (event) => {
-
-    let keyValue = event.key;
-    document.getElementById("calcbox").innerHTML = keyValue;
-
-}
-*/
 
 
 let addNumbers = (item) => {
@@ -119,6 +104,7 @@ let addNumbers = (item) => {
         const buttonValue = item.textContent
         document.getElementById("calcbox").innerText = secondNum(buttonValue);
         console.log(buttonValue);
+
     }
 
     else  {
@@ -131,28 +117,10 @@ let addNumbers = (item) => {
 
     };
 
+/*
 
-let keyNumbers = (event) => {
-
-    if (myOperator.length > 0) {
-
-        const buttonValue = event.key
-        document.getElementById("calcbox").innerText = secondNum(buttonValue);
-        console.log(buttonValue);
-    }
-
-    else  {
-            
-        const buttonValue = event.key;
-        document.getElementById("calcbox").innerText = firstNum(buttonValue);
-        console.log(buttonValue);
-        
-        }
-
-    };
-
-
-keySupport.addEventListener("keydown", (event) => {
+//Option for keyboard support
+document.addEventListener("keydown", (event) => {
 
     if (myOperator.length > 0) {
 
@@ -172,6 +140,7 @@ keySupport.addEventListener("keydown", (event) => {
 
     });
 
+*/
 
 
 btn1.forEach(element => {  
@@ -180,32 +149,6 @@ btn1.forEach(element => {
 
     });
 
-   
-
-/*
-btn1.forEach(element => {  
-    
-    element.addEventListener("click", () => {
-
-        if (myOperator.length > 0) {
-
-            const buttonValue = element.textContent
-            document.getElementById("calcbox").innerText = secondNum(buttonValue);
-            console.log(buttonValue);
-        } 
-        
-        else  {
-            
-            const buttonValue = element.textContent;
-            document.getElementById("calcbox").innerText = firstNum(buttonValue);
-            console.log(buttonValue);
-            
-            }
-        
-        });
-    
-    });
-*/
 
 
 btn2.forEach(element => {  
@@ -252,9 +195,6 @@ equalSign.addEventListener("click", () => {
 
         clearValues();
         //console.log(numberList);
-        console.log(initialValue);
-        console.log(secondValue);
-        console.log(myOperator);
         document.getElementById("calcbox").innerText = "NaN";
 
     }
@@ -264,9 +204,6 @@ equalSign.addEventListener("click", () => {
 
         
         numberList.push(Number(secondValue));
-        console.log(numberList); 
-        console.log(secondValue);
-        console.log(initialValue);
 
     }
 
@@ -295,8 +232,6 @@ equalSign.addEventListener("click", () => {
     secondValue = "";
     initialValue = continuing(numberList, initialValue);
     numberList = initialValue;
-    console.log(initialValue);
-    console.log(numberList);  
 
 });
 
@@ -304,10 +239,6 @@ btn4.addEventListener("click", () => {
 
     //clear all fields used for calculation
     clearValues();
-    //console.log(numberList);
-    //console.log(initialValue);
-    //console.log(secondValue);
-    //console.log(myOperator);
 
     document.getElementById("calcbox").innerText = 0;
 
