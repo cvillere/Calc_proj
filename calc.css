@@ -37,7 +37,25 @@
     display: grid;
     height: 35px;
     width: 35px;
+    font-size: 15px;
     align-self: center;
     justify-self: center;
+    place-items: center center;
 
+}
+
+.calcbox {
+
+    display: grid;
+    height: 30px;
+    width: 395px;
+    border: 3px solid green;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    border-radius: 25px;
+    text-align: right;
+    font-size: 15px;
+    font
+    
 }

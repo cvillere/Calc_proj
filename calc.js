@@ -39,8 +39,6 @@ makeChildDivs();
 const buttonsCollection = document.getElementsByClassName("childButton");
 const buttonsList = Array.from(buttonsCollection);
 
-console.log(buttonsList);
-
 function applyButtonStrings (buttons) {
     for (i = 0; i < 16; i++) {
         buttons[i].textContent = `${buttonStrings[i]}`
