@@ -23,6 +23,9 @@ const buttonStrings = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
 
 const containerDiv = document.body.querySelector(".container");
 
+let displayValue = 0;
+let runningTotal = 0;
+
 function makeChildDivs (){
     for (i = 0; i < 16; i++) {
         let childDiv = document.createElement("div");
