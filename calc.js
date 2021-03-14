@@ -18,9 +18,12 @@ function operate (operator, a, b) {
     return operator(a, b)
 }
 
+const buttonStrings = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+                        "+", "-", "*", "/", "=", "cl"]
+
 const containerDiv = document.body.querySelector(".container");
 
-function childDivs (){
+function makeChildDivs (){
     for (i = 0; i < 16; i++) {
         let childDiv = document.createElement("div");
         let childBut = document.createElement("button");
@@ -31,4 +34,17 @@ function childDivs (){
     }
 }
 
-childDivs();
+makeChildDivs();
+
+const buttonsCollection = document.getElementsByClassName("childButton");
+const buttonsList = Array.from(buttonsCollection);
+
+console.log(buttonsList);
+
+function applyButtonStrings (buttons) {
+    for (i = 0; i < 16; i++) {
+        buttons[i].textContent = `${buttonStrings[i]}`
+    }
+}
+
+applyButtonStrings(buttonsList);
