@@ -310,6 +310,129 @@ function clearValues () {
 
 }
 
+#calcbox {
+
+    display: block;
+    position: absolute;
+    left: 400px;
+    top: 150px;
+    height: 20px;
+    width: 18.2%;
+    z-index: 10;
+    border: 3px solid green;
+    height: 20px;
+    text-align: right;
+
+}
+
+.myborder {
+
+    display: flex;
+    position: absolute;
+    height: 275px;
+    width: 315px;
+    border-top: 10px solid red;
+    border-left: 10px solid red;
+    border-right: 10px solid red;
+    border-bottom: 10px solid red;
+    left: 340px;
+    top: 110px;
+    z-index: 1;
+
+}
+
+.bodypos {
+
+    position: relative;
+
+}
+
+.movement1 {
+
+    display: flex;
+    position: absolute;
+    top: 180px;
+    left: 400px;
+
+
+    
+}
+
+.movement2 {
+
+    display: flex;
+    position: absolute;
+    top: 220px;
+    left: 400px;
+
+
+}
+
+.movement3 {
+
+    display: flex;
+    position: absolute;
+    top: 260px;
+    left: 400px;
+
+ 
+}
+
+.movement4 {
+
+    display: flex;
+    position: absolute;
+    top: 300px;
+    left: 400px;
+
+  
+}
+
+.movement5 {
+
+    display: flex;
+    position: absolute;
+    top: 340px;
+    left: 400px;
+
+  
+}
+
+
+
+.format {
+
+    height: 25px;
+    width: 51px;
+    margin: 5px 5px 5px 0px;
+    z-index: 5;
+
+}
+
+.format2 {
+
+    background-color: green;
+    color: magenta;
+
+}
+
+.design {
+
+    height: 25px;
+    width: 107px;
+    margin: 5px 5px 5px 0px;
+    z-index: 6;
+
+}
+
+
+#center {
+
+    text-align: center;
+
+}
+
+
 
 
 
