@@ -23,8 +23,8 @@ const buttonStrings = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
 
 const containerDiv = document.body.querySelector(".container");
 
-let displayValue = 0;
-let runningTotal = 0;
+let displayValue = "";
+let runningTotal = "";
 
 function makeChildDivs (){
     for (i = 0; i < 16; i++) {
@@ -39,7 +39,7 @@ function makeChildDivs (){
 
 makeChildDivs();
 
-const buttonsCollection = document.getElementsByClassName("childButton");
+const buttonsCollection = document.querySelectorAll(".childButton");
 const buttonsList = Array.from(buttonsCollection);
 
 function applyButtonStrings (buttons) {
@@ -49,3 +49,18 @@ function applyButtonStrings (buttons) {
 }
 
 applyButtonStrings(buttonsList);
+
+let calcDisplay = document.querySelector(".calcbox"); 
+//let divDisplay = document.querySelector(".divbox");
+
+buttonsList.forEach(e => 
+    e.addEventListener('click', e => {
+        let displayText = `${calcDisplay.textContent}` + `${e.target.textContent}`
+        calcDisplay.textContent = displayText;
+        console.log(calcDisplay.textContent);
+        console.log(displayText);
+    }))
+
+
+
+ 
