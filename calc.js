@@ -53,11 +53,13 @@ applyButtonStrings(buttonsList);
 let calcDisplay = document.querySelector(".calcbox"); 
 //let divDisplay = document.querySelector(".divbox");
 
+console.log(calcDisplay.value);
+
 buttonsList.forEach(e => 
     e.addEventListener('click', e => {
-        let displayText = `${calcDisplay.textContent}` + `${e.target.textContent}`
-        calcDisplay.textContent = displayText;
-        console.log(calcDisplay.textContent);
+        let displayText = `${calcDisplay.value}` + `${e.target.textContent}`
+        calcDisplay.value = displayText;
+        console.log(calcDisplay.value);
         console.log(displayText);
     }))
 
