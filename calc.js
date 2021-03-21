@@ -19,7 +19,9 @@ function operate (operator, a, b) {
 }
 
 const buttonStrings = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
-                        "+", "-", "*", "/", "=", "cl"]
+                        "+", "-", "*", "/", "=", "cl"];
+
+const operatorStrings = ["+", "-", "*", "/"];
 
 const containerDiv = document.body.querySelector(".container");
 
@@ -59,6 +61,12 @@ buttonsList.forEach(e =>
         }
     }))
 
+function addOperatorClass (calcButtons) {
+    calcButtons.forEach(e => {
+        if (operatorStrings.includes(e.textContent)){
+            e.classList.add("operator")
+             }     
+        } )
+    }
 
-
- 
+ addOperatorClass(buttonsList);
