@@ -31,9 +31,9 @@ function makeChildDivs (){
         let childDiv = document.createElement("div");
         let childBut = document.createElement("button");
         childDiv.classList.add("buttDiv");
-        childBut.classList.add("childButton")
+        childBut.classList.add("childButton");
         containerDiv.appendChild(childDiv);
-        childDiv.appendChild(childBut)
+        childDiv.appendChild(childBut);
     }
 }
 
@@ -51,16 +51,12 @@ function applyButtonStrings (buttons) {
 applyButtonStrings(buttonsList);
 
 let calcDisplay = document.querySelector(".calcbox"); 
-//let divDisplay = document.querySelector(".divbox");
-
-console.log(calcDisplay.value);
-
 buttonsList.forEach(e => 
     e.addEventListener('click', e => {
-        let displayText = `${calcDisplay.value}` + `${e.target.textContent}`
-        calcDisplay.value = displayText;
-        console.log(calcDisplay.value);
-        console.log(displayText);
+        if (Number.isInteger(parseInt(e.target.textContent,10)) === true) {
+            let displayText = `${calcDisplay.value}` + `${e.target.textContent}`
+            calcDisplay.value = displayText;
+        }
     }))
 
 
