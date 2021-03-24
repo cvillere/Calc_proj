@@ -55,7 +55,7 @@ applyButtonStrings(buttonsList);
 let calcDisplay = document.querySelector(".calcbox"); 
 buttonsList.forEach(e => 
     e.addEventListener('click', e => {
-        if (Number.isInteger(parseInt(e.target.textContent,10)) === true) {
+        if (Number.isInteger(parseInt(e.target.textContent, 10)) === true) {
             let displayText = `${calcDisplay.value}` + `${e.target.textContent}`
             calcDisplay.value = displayText;
         }
@@ -70,3 +70,14 @@ function addOperatorClass (calcButtons) {
     }
 
  addOperatorClass(buttonsList);
+
+ let operatorButtons = document.querySelectorAll(".operator");
+ function createDisplayValue (operButtons) {
+     [...operButtons].forEach(e => 
+        e.addEventListener('click', e => {
+            displayValue = parseInt(calcDisplay.value);
+            
+        }))
+ }
+
+ createDisplayValue(operatorButtons);
