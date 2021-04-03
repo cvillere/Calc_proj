@@ -27,6 +27,7 @@ const containerDiv = document.body.querySelector(".container");
 
 let displayValue = "";
 let runningTotal = "";
+let currentOperator = "";
 
 function makeChildDivs (){
     for (i = 0; i < 16; i++) {
@@ -51,14 +52,22 @@ function applyButtonStrings (buttons) {
 }
 
 applyButtonStrings(buttonsList);
+//let displayValue = "";
+//let runningTotal = "";
+//let currentOperator = "";
 
 let calcDisplay = document.querySelector(".calcbox"); 
 buttonsList.forEach(e => 
     e.addEventListener('click', e => {
-        if (Number.isInteger(parseInt(e.target.textContent, 10)) === true) {
-            let displayText = `${calcDisplay.value}` + `${e.target.textContent}`
-            calcDisplay.value = displayText;
-        }
+        //This is a good line of code below, but it is the wrong if condition
+        //If condition needs to depend on the displayValue
+        let buttonNum = parseInt(e.target.textContent, 10);
+        let displayText = `${calcDisplay.value}` + `${buttonNum}`
+        calcDisplay.value = displayText
+        console.log(displayText);
+        console.log(calcDisplay.value);
+        console.log(buttonNum);
+
     }))
 
 function addOperatorClass (calcButtons) {
@@ -75,9 +84,20 @@ function addOperatorClass (calcButtons) {
  function createDisplayValue (operButtons) {
      [...operButtons].forEach(e => 
         e.addEventListener('click', e => {
+            currentOperator = e.textContent;
             displayValue = parseInt(calcDisplay.value);
-            
+            calcDisplay.value = "";
+
         }))
  }
 
  createDisplayValue(operatorButtons);
+
+ /*
+ if (displayValue != '' || displayValue != null || displayValue != undefined) {
+    calcDisplay.value = "";
+    let displayText = `${calcDisplay.value}` + `${e.target.textContent}`;
+    calcDisplay.value = displayText;
+}
+
+*/
