@@ -44,6 +44,8 @@ makeChildDivs();
 
 const buttonsCollection = document.querySelectorAll(".childButton");
 const buttonsList = Array.from(buttonsCollection);
+const numberButtonsList = buttonsList.slice(0, 10);
+
 
 function applyButtonStrings (buttons) {
     for (i = 0; i < 16; i++) {
@@ -52,21 +54,22 @@ function applyButtonStrings (buttons) {
 }
 
 applyButtonStrings(buttonsList);
-//let displayValue = "";
-//let runningTotal = "";
-//let currentOperator = "";
+
+function addToRunning () {
+    if (currentOperator != '' && runningTotal === '') {
+        runningTotal = displayValue;
+        calcDisplay.value = "";
+        console.log(runningTotal);
+     }
+}
 
 let calcDisplay = document.querySelector(".calcbox"); 
-buttonsList.forEach(e => 
+numberButtonsList.forEach(e => 
     e.addEventListener('click', e => {
-        //This is a good line of code below, but it is the wrong if condition
-        //If condition needs to depend on the displayValue
+        addToRunning();
         let buttonNum = parseInt(e.target.textContent, 10);
         let displayText = `${calcDisplay.value}` + `${buttonNum}`
         calcDisplay.value = displayText
-        console.log(displayText);
-        console.log(calcDisplay.value);
-        console.log(buttonNum);
 
     }))
 
@@ -75,7 +78,7 @@ function addOperatorClass (calcButtons) {
         if (operatorStrings.includes(e.textContent)){
             e.classList.add("operator")
              }     
-        } )
+        })
     }
 
  addOperatorClass(buttonsList);
@@ -84,20 +87,23 @@ function addOperatorClass (calcButtons) {
  function createDisplayValue (operButtons) {
      [...operButtons].forEach(e => 
         e.addEventListener('click', e => {
-            currentOperator = e.textContent;
+            currentOperator = e.target.textContent;
             displayValue = parseInt(calcDisplay.value);
-            calcDisplay.value = "";
-
+            console.log(currentOperator);
+            console.log(displayValue);
         }))
- }
+    }
 
  createDisplayValue(operatorButtons);
 
  /*
- if (displayValue != '' || displayValue != null || displayValue != undefined) {
+ if (displayValue !== '' || displayValue != null || displayValue != undefined) {
     calcDisplay.value = "";
     let displayText = `${calcDisplay.value}` + `${e.target.textContent}`;
     calcDisplay.value = displayText;
 }
 
 */
+
+//(currentOperator != '') && (runningTotal === '')
+//(currentOperator !== '' || currentOperator !== null || currentOperator !== undefined) && (runningTotal === '' || runningTotal === null || runningTotal === undefined)
