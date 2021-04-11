@@ -24,18 +24,6 @@ function operate (operator, a, b) {
     } else if (operator === "/") {
         divide(a, parseInt(b));
     }
-    
-}
-
-switch (currentOperator) {
-    case "+":
-        add(runningTotal, parseInt(calcDisplay.value));
-    case "-":
-        subtract(runningTotal, parseInt(calcDisplay.value));
-    case "/":
-        divide(runningTotal, parseInt(calcDisplay.value));
-    case "*":
-        multiply(runningTotal, parseInt(calcDisplay.value)); 
 }
 
 const buttonStrings = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
@@ -65,6 +53,13 @@ makeChildDivs();
 const buttonsCollection = document.querySelectorAll(".childButton");
 const buttonsList = Array.from(buttonsCollection);
 const numberButtonsList = buttonsList.slice(0, 10);
+const equalsButtonArray = buttonsList.slice(14, 15);
+const clearButtonArray = buttonsList.slice(15, 16)
+console.log(clearButtonArray);
+
+equalsButtonArray.forEach(e =>
+    e.addEventListener("click", e =>
+    operator(currentOperator, runningTotal, parseInt(calcDisplay.value))))
 
 
 function applyButtonStrings (buttons) {
@@ -116,14 +111,10 @@ function addOperatorClass (calcButtons) {
 
  createDisplayValue(operatorButtons);
 
- /*
- if (displayValue !== '' || displayValue != null || displayValue != undefined) {
-    calcDisplay.value = "";
-    let displayText = `${calcDisplay.value}` + `${e.target.textContent}`;
-    calcDisplay.value = displayText;
-}
+ function clearCalc () {
+     displayValue = "";
+     runningTotal = "";
+     currentOperator = "";
+ }
 
-*/
-
-//(currentOperator != '') && (runningTotal === '')
-//(currentOperator !== '' || currentOperator !== null || currentOperator !== undefined) && (runningTotal === '' || runningTotal === null || runningTotal === undefined)
+ 
