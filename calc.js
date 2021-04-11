@@ -15,7 +15,27 @@ function divide (a, b) {
 }
 
 function operate (operator, a, b) {
-    return operator(a, b)
+    if (operator === "+") {
+        add(a, parseInt(b));
+    } else if (operator === "-") {
+        subtract(a, parseInt(b));
+    } else if (operator === "*") {
+        multiply(a, parseInt(b));
+    } else if (operator === "/") {
+        divide(a, parseInt(b));
+    }
+    
+}
+
+switch (currentOperator) {
+    case "+":
+        add(runningTotal, parseInt(calcDisplay.value));
+    case "-":
+        subtract(runningTotal, parseInt(calcDisplay.value));
+    case "/":
+        divide(runningTotal, parseInt(calcDisplay.value));
+    case "*":
+        multiply(runningTotal, parseInt(calcDisplay.value)); 
 }
 
 const buttonStrings = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
