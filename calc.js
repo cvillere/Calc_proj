@@ -16,19 +16,18 @@ function divide (a, b) {
 
 function operate (operator, a, b) {
     if (operator === "+") {
-        add(a, parseInt(b));
+       return add(a, parseInt(b));
     } else if (operator === "-") {
-        subtract(a, parseInt(b));
+       return subtract(a, parseInt(b));
     } else if (operator === "*") {
-        multiply(a, parseInt(b));
+       return multiply(a, parseInt(b));
     } else if (operator === "/") {
-        divide(a, parseInt(b));
+       return divide(a, parseInt(b));
     }
 }
 
 const buttonStrings = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
                         "+", "-", "*", "/", "=", "cl"];
-
 const operatorStrings = ["+", "-", "*", "/"];
 
 const containerDiv = document.body.querySelector(".container");
@@ -57,11 +56,6 @@ const equalsButtonArray = buttonsList.slice(14, 15);
 const clearButtonArray = buttonsList.slice(15, 16)
 console.log(clearButtonArray);
 
-equalsButtonArray.forEach(e =>
-    e.addEventListener("click", e =>
-    operator(currentOperator, runningTotal, parseInt(calcDisplay.value))))
-
-
 function applyButtonStrings (buttons) {
     for (i = 0; i < 16; i++) {
         buttons[i].textContent = `${buttonStrings[i]}`
@@ -70,7 +64,7 @@ function applyButtonStrings (buttons) {
 
 applyButtonStrings(buttonsList);
 
-function addToRunning () {
+function addToTotal () {
     if (currentOperator != '' && runningTotal === '') {
         runningTotal = displayValue;
         calcDisplay.value = "";
@@ -81,7 +75,7 @@ function addToRunning () {
 let calcDisplay = document.querySelector(".calcbox"); 
 numberButtonsList.forEach(e => 
     e.addEventListener('click', e => {
-        addToRunning();
+        addToTotal();
         let buttonNum = parseInt(e.target.textContent, 10);
         let displayText = `${calcDisplay.value}` + `${buttonNum}`
         calcDisplay.value = displayText
@@ -110,6 +104,16 @@ function addOperatorClass (calcButtons) {
     }
 
  createDisplayValue(operatorButtons);
+
+ equalsButtonArray.forEach(e =>
+    e.addEventListener("click", e => {
+    console.log(currentOperator);
+    console.log(runningTotal);
+    console.log(typeof(runningTotal));
+    console.log(typeof(parseInt(calcDisplay.value)));
+    console.log(operate(currentOperator, runningTotal, calcDisplay.value));
+    calcDisplay.value = operate(currentOperator, runningTotal, calcDisplay.value)
+}));
 
  function clearCalc () {
      displayValue = "";
