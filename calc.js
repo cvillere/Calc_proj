@@ -64,6 +64,7 @@ function applyButtonStrings (buttons) {
 
 applyButtonStrings(buttonsList);
 
+//This works on the 1st run through, but not after
 function addToTotal () {
     if (currentOperator != '' && runningTotal === '') {
         runningTotal = displayValue;
@@ -105,6 +106,7 @@ function addOperatorClass (calcButtons) {
 
  createDisplayValue(operatorButtons);
 
+ //clearCalc added to see if addToTotal will work for future runs
  equalsButtonArray.forEach(e =>
     e.addEventListener("click", e => {
     console.log(currentOperator);
@@ -113,6 +115,7 @@ function addOperatorClass (calcButtons) {
     console.log(typeof(parseInt(calcDisplay.value)));
     console.log(operate(currentOperator, runningTotal, calcDisplay.value));
     calcDisplay.value = operate(currentOperator, runningTotal, calcDisplay.value)
+    clearCalc();
 }));
 
  function clearCalc () {
