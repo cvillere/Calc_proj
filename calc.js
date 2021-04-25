@@ -26,6 +26,19 @@ function operate (operator, a, b) {
     }
 }
 
+function roundingNumber(val, decimals){
+    //Parse the value as a float value
+    if (val % 1 != 0) {
+        val = parseFloat(val);
+        return val.toFixed(decimals)
+    } else {
+        return val;
+
+    }
+    //Format the value w/ the specified number
+    //of decimal places and return it.
+}
+
 const buttonStrings = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
                         "+", "-", "*", "/", "=", "cl"];
 const operatorStrings = ["+", "-", "*", "/"];
@@ -64,7 +77,6 @@ function applyButtonStrings (buttons) {
 
 applyButtonStrings(buttonsList);
 
-//This works on the 1st run through, but not after
 function addToTotal () {
     if (currentOperator != '' && runningTotal === '') {
         runningTotal = displayValue;
@@ -114,7 +126,7 @@ function addOperatorClass (calcButtons) {
     console.log(typeof(runningTotal));
     console.log(typeof(parseInt(calcDisplay.value)));
     console.log(operate(currentOperator, runningTotal, calcDisplay.value));
-    calcDisplay.value = operate(currentOperator, runningTotal, calcDisplay.value)
+    calcDisplay.value = roundingNumber(operate(currentOperator, runningTotal, calcDisplay.value), 2);
     clearCalc();
 }));
 
