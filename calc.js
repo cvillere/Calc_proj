@@ -30,9 +30,9 @@ function roundingNumber(val, decimals){
     //Parse the value as a float value
     if (val % 1 != 0) {
         val = parseFloat(val);
-        return val.toFixed(decimals)
+        return parseFloat(val.toFixed(decimals))
     } else {
-        return val;
+        return parseInt(val);
 
     }
     //Format the value w/ the specified number
@@ -110,7 +110,7 @@ function addOperatorClass (calcButtons) {
      [...operButtons].forEach(e => 
         e.addEventListener('click', e => {
             currentOperator = e.target.textContent;
-            displayValue = parseInt(calcDisplay.value);
+            displayValue = roundingNumber((calcDisplay.value), 2);
             console.log(currentOperator);
             console.log(displayValue);
         }))
@@ -121,19 +121,28 @@ function addOperatorClass (calcButtons) {
  //clearCalc added to see if addToTotal will work for future runs
  equalsButtonArray.forEach(e =>
     e.addEventListener("click", e => {
-    console.log(currentOperator);
-    console.log(runningTotal);
-    console.log(typeof(runningTotal));
-    console.log(typeof(parseInt(calcDisplay.value)));
     console.log(operate(currentOperator, runningTotal, calcDisplay.value));
-    calcDisplay.value = roundingNumber(operate(currentOperator, runningTotal, calcDisplay.value), 2);
-    clearCalc();
+    if (currentOperator === "" || runningTotal === "" || displayValue === "") {
+        calcDisplay.value = "hit clear button & start over"
+    } else {
+        calcDisplay.value = roundingNumber(operate(currentOperator, runningTotal, calcDisplay.value), 2);
+        clearValues();
+    }
 }));
 
- function clearCalc () {
+ function clearValues () {
      displayValue = "";
      runningTotal = "";
      currentOperator = "";
  }
 
+ function clearCalc () {
+    displayValue = "";
+    runningTotal = "";
+    currentOperator = "";
+    calcDisplay.value = "";
+ }
+
+ clearButtonArray.forEach(e =>
+    e.addEventListener("click", e => {clearCalc()}));
  
