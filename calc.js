@@ -121,11 +121,15 @@ function addOperatorClass (calcButtons) {
  //clearCalc added to see if addToTotal will work for future runs
  equalsButtonArray.forEach(e =>
     e.addEventListener("click", e => {
-    console.log(operate(currentOperator, runningTotal, calcDisplay.value));
+    //console.log(operate(currentOperator, runningTotal, calcDisplay.value));
     if (currentOperator === "" || runningTotal === "" || displayValue === "") {
-        calcDisplay.value = "hit clear button & start over"
-    } else {
+        calcDisplay.value = "hit clear button & start over";
+    } else if (currentOperator === "/" && (runningTotal === "0" || calcDisplay.value === "0")) {
+        calcDisplay.value = "No 0 Division!!!";
+    }
+    else {
         calcDisplay.value = roundingNumber(operate(currentOperator, runningTotal, calcDisplay.value), 2);
+        //console.log(calcDisplay.value);
         clearValues();
     }
 }));
