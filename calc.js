@@ -27,20 +27,16 @@ function operate (operator, a, b) {
 }
 
 function roundingNumber(val, decimals){
-    //Parse the value as a float value
     if (val % 1 != 0) {
         val = parseFloat(val);
         return parseFloat(val.toFixed(decimals))
     } else {
         return parseInt(val);
-
     }
-    //Format the value w/ the specified number
-    //of decimal places and return it.
 }
 
 const buttonStrings = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
-                        "+", "-", "*", "/", "=", "cl"];
+                        "+", "-", "*", "/", "=", "cl", ".", "bk"];
 const operatorStrings = ["+", "-", "*", "/"];
 
 const containerDiv = document.body.querySelector(".container");
@@ -50,7 +46,7 @@ let runningTotal = "";
 let currentOperator = "";
 
 function makeChildDivs (){
-    for (i = 0; i < 16; i++) {
+    for (i = 0; i < 18; i++) {
         let childDiv = document.createElement("div");
         let childBut = document.createElement("button");
         childDiv.classList.add("buttDiv");
@@ -70,7 +66,7 @@ const clearButtonArray = buttonsList.slice(15, 16)
 console.log(clearButtonArray);
 
 function applyButtonStrings (buttons) {
-    for (i = 0; i < 16; i++) {
+    for (i = 0; i < 18; i++) {
         buttons[i].textContent = `${buttonStrings[i]}`
     }
 }
@@ -121,15 +117,12 @@ function addOperatorClass (calcButtons) {
  //clearCalc added to see if addToTotal will work for future runs
  equalsButtonArray.forEach(e =>
     e.addEventListener("click", e => {
-    //console.log(operate(currentOperator, runningTotal, calcDisplay.value));
     if (currentOperator === "" || runningTotal === "" || displayValue === "") {
         calcDisplay.value = "hit clear button & start over";
     } else if (currentOperator === "/" && (runningTotal === "0" || calcDisplay.value === "0")) {
         calcDisplay.value = "No 0 Division!!!";
-    }
-    else {
+    } else {
         calcDisplay.value = roundingNumber(operate(currentOperator, runningTotal, calcDisplay.value), 2);
-        //console.log(calcDisplay.value);
         clearValues();
     }
 }));
