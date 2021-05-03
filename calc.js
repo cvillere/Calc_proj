@@ -35,6 +35,7 @@ function roundingNumber(val, decimals){
     }
 }
 
+//going to have to add classes to . and bk and use grid column
 const buttonStrings = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
                         "+", "-", "*", "/", "=", "cl", ".", "bk"];
 const operatorStrings = ["+", "-", "*", "/"];
@@ -62,8 +63,9 @@ const buttonsCollection = document.querySelectorAll(".childButton");
 const buttonsList = Array.from(buttonsCollection);
 const numberButtonsList = buttonsList.slice(0, 10);
 const equalsButtonArray = buttonsList.slice(14, 15);
-const clearButtonArray = buttonsList.slice(15, 16)
-console.log(clearButtonArray);
+const clearButtonArray = buttonsList.slice(15, 16);
+const decimalButtonArray = buttonsList.slice(16, 17);
+const bkspButtonArray = buttonsList.slice(17, 18);
 
 function applyButtonStrings (buttons) {
     for (i = 0; i < 18; i++) {
@@ -88,7 +90,7 @@ numberButtonsList.forEach(e =>
         let buttonNum = parseInt(e.target.textContent, 10);
         let displayText = `${calcDisplay.value}` + `${buttonNum}`
         calcDisplay.value = displayText
-
+    
     }))
 
 function addOperatorClass (calcButtons) {
@@ -142,4 +144,22 @@ function addOperatorClass (calcButtons) {
 
  clearButtonArray.forEach(e =>
     e.addEventListener("click", e => {clearCalc()}));
+
+function decimalButton(theValue) {
+    if (theValue.includes(".", 0) === false) {
+        let buttonDec = e.target.textContent
+        let displayString = `${calcDisplay.value}` + `${buttonDec}`
+        calcDisplay.value = displayString
+    }
+}
+
+decimalButtonArray.forEach(e =>
+    e.addEventListener("click", e => {
+    e.target.classList.add("stretchdec");
+    //let decimalDiv = document.querySelector("childButton");
+    //decimalDiv.classList.add("stretchdec")
+    decimalButton(calcDisplay.value);
+    }))
+
+console.log(decimalButtonArray);
  
