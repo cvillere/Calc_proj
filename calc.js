@@ -60,12 +60,15 @@ function makeChildDivs (){
 makeChildDivs();
 
 const buttonsCollection = document.querySelectorAll(".childButton");
+const divsCollection = document.querySelectorAll(".buttDiv");
 const buttonsList = Array.from(buttonsCollection);
+const divsList = Array.from(divsCollection);
 const numberButtonsList = buttonsList.slice(0, 10);
 const equalsButtonArray = buttonsList.slice(14, 15);
 const clearButtonArray = buttonsList.slice(15, 16);
-const decimalButtonArray = buttonsList.slice(16, 17);
-const bkspButtonArray = buttonsList.slice(17, 18);
+const decimalButtonArray = divsList.slice(16, 17);
+const bkspButtonArray = divsList.slice(17, 18);
+
 
 function applyButtonStrings (buttons) {
     for (i = 0; i < 18; i++) {
@@ -145,6 +148,7 @@ function addOperatorClass (calcButtons) {
  clearButtonArray.forEach(e =>
     e.addEventListener("click", e => {clearCalc()}));
 
+/*
 function decimalButton(theValue) {
     if (theValue.includes(".", 0) === false) {
         let buttonDec = e.target.textContent
@@ -152,14 +156,20 @@ function decimalButton(theValue) {
         calcDisplay.value = displayString
     }
 }
+*/
 
-decimalButtonArray.forEach(e =>
+decimalButtonArray.forEach(element => {
+    let decimalDiv = element;
+    decimalDiv.classList.add("stretchdec");
+    })
+
+
+decimalButtonArray.forEach(e => 
     e.addEventListener("click", e => {
-    e.target.classList.add("stretchdec");
-    //let decimalDiv = document.querySelector("childButton");
-    //decimalDiv.classList.add("stretchdec")
-    decimalButton(calcDisplay.value);
-    }))
-
-console.log(decimalButtonArray);
+    if ((calcDisplay.value).includes(".", 0) === false) {
+        let buttonDec = e.target.textContent
+        let displayString = `${calcDisplay.value}` + `${buttonDec}`
+        calcDisplay.value = displayString
+    }
+}))
  
