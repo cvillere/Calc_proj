@@ -119,7 +119,6 @@ function addOperatorClass (calcButtons) {
 
  createDisplayValue(operatorButtons);
 
- //clearCalc added to see if addToTotal will work for future runs
  equalsButtonArray.forEach(e =>
     e.addEventListener("click", e => {
     if (currentOperator === "" || runningTotal === "" || displayValue === "") {
@@ -148,21 +147,10 @@ function addOperatorClass (calcButtons) {
  clearButtonArray.forEach(e =>
     e.addEventListener("click", e => {clearCalc()}));
 
-/*
-function decimalButton(theValue) {
-    if (theValue.includes(".", 0) === false) {
-        let buttonDec = e.target.textContent
-        let displayString = `${calcDisplay.value}` + `${buttonDec}`
-        calcDisplay.value = displayString
-    }
-}
-*/
-
 decimalButtonArray.forEach(element => {
     let decimalDiv = element;
     decimalDiv.classList.add("stretchdec");
     })
-
 
 decimalButtonArray.forEach(e => 
     e.addEventListener("click", e => {
@@ -172,4 +160,13 @@ decimalButtonArray.forEach(e =>
         calcDisplay.value = displayString
     }
 }))
- 
+
+bkspButtonArray.forEach(element => {
+    let bkspDiv = element;
+    bkspDiv.classList.add("stretchbksp")
+})
+
+bkspButtonArray.forEach(e =>
+    e.addEventListener("click", e => {
+      calcDisplay.value = calcDisplay.value.slice(0, -1);
+    }))
