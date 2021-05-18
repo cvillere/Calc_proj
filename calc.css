@@ -30,8 +30,8 @@
 .childButton {
 
     display: grid;
-    height: 35px;
-    width: 35px;
+    height: 40px;
+    width: 40px;
     font-size: 15px;
     align-self: center;
     justify-self: center;
@@ -54,4 +54,16 @@
     padding-right: 15px;
     align-items: center;
     
+}
+
+.stretchdec {
+
+    grid-column: 1 / span 2;
+
+}
+
+.stretchbksp {
+
+    grid-column: 3 / span 2;
+
 }
